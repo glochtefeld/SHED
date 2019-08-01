@@ -8,24 +8,65 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane prefHeight="454.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gavinlochtefeld.shed.PreReqController">
+<GridPane prefHeight="579.0" prefWidth="824.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gavinlochtefeld.shed.PreReqController">
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+   </rowConstraints>
    <children>
-      <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="398.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="579.0" prefWidth="822.0" tabClosingPolicy="UNAVAILABLE" GridPane.columnSpan="2147483647" GridPane.rowSpan="2147483647">
         <tabs>
           <Tab text="Context">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="365.0" prefWidth="744.0">
                      <children>
-                        <ComboBox fx:id="weatherDropdown" layoutX="22.0" layoutY="14.0" prefWidth="150.0" promptText="Weather" />
-                        <Label layoutX="187.0" layoutY="6.0" text="Days where this can happen" />
-                        <CheckBox fx:id="dayMon" contentDisplay="RIGHT" layoutX="187.0" layoutY="27.0" mnemonicParsing="false" text="M" />
-                        <CheckBox fx:id="dayTue" contentDisplay="RIGHT" layoutX="226.0" layoutY="27.0" mnemonicParsing="false" text="Tu" />
-                        <CheckBox fx:id="dayWed" contentDisplay="RIGHT" layoutX="273.0" layoutY="27.0" mnemonicParsing="false" text="W" />
-                        <CheckBox fx:id="dayThu" contentDisplay="RIGHT" layoutX="317.0" layoutY="27.0" mnemonicParsing="false" text="Th" />
-                        <CheckBox fx:id="dayFri" contentDisplay="RIGHT" layoutX="364.0" layoutY="27.0" mnemonicParsing="false" text="F" />
-                        <CheckBox fx:id="daySat" contentDisplay="RIGHT" layoutX="403.0" layoutY="27.0" mnemonicParsing="false" text="Sat" />
-                        <CheckBox fx:id="daySun" contentDisplay="RIGHT" layoutX="455.0" layoutY="27.0" mnemonicParsing="false" text="Sun" />
+                        <ComboBox fx:id="weatherDropdown" layoutX="553.0" layoutY="14.0" prefWidth="150.0" promptText="Weather" />
+                        <Label layoutX="426.0" layoutY="71.0" text="Days where this can happen" />
+                        <CheckBox fx:id="dayMon" contentDisplay="RIGHT" layoutX="426.0" layoutY="95.0" mnemonicParsing="false" text="M" />
+                        <CheckBox fx:id="dayTue" contentDisplay="RIGHT" layoutX="471.0" layoutY="95.0" mnemonicParsing="false" text="Tu" />
+                        <CheckBox fx:id="dayWed" contentDisplay="RIGHT" layoutX="519.0" layoutY="95.0" mnemonicParsing="false" text="W" />
+                        <CheckBox fx:id="dayThu" contentDisplay="RIGHT" layoutX="564.0" layoutY="95.0" mnemonicParsing="false" text="Th" />
+                        <CheckBox fx:id="dayFri" contentDisplay="RIGHT" layoutX="612.0" layoutY="95.0" mnemonicParsing="false" text="F" />
+                        <CheckBox fx:id="daySat" contentDisplay="RIGHT" layoutX="653.0" layoutY="95.0" mnemonicParsing="false" text="Sat" />
+                        <CheckBox fx:id="daySun" contentDisplay="RIGHT" layoutX="707.0" layoutY="95.0" mnemonicParsing="false" text="Sun" />
+                        <CheckBox fx:id="festivalCheck" layoutX="426.0" layoutY="18.0" mnemonicParsing="false" text="Festival Day" />
+                        <TextField fx:id="dialogueReqInput" layoutX="21.0" layoutY="36.0" />
+                        <Label fx:id="dialogueReqOutLabel" alignment="TOP_LEFT" layoutX="204.0" layoutY="36.0" prefHeight="238.0" prefWidth="209.0" wrapText="true" />
+                        <Label layoutX="21.0" layoutY="10.0" prefHeight="16.0" prefWidth="338.0" text="Dialogue is NOT in progress" />
+                        <TextField fx:id="yearEntry" layoutX="723.0" layoutY="14.0" prefHeight="26.0" prefWidth="77.0" promptText="Year (1)" />
+                        <Label layoutX="426.0" layoutY="144.0" text="Seasons" />
+                        <CheckBox fx:id="seasonSpring" layoutX="427.0" layoutY="169.0" mnemonicParsing="false" text="Spring" />
+                        <CheckBox fx:id="seasonSummer" layoutX="427.0" layoutY="202.0" mnemonicParsing="false" text="Summer" />
+                        <CheckBox fx:id="seasonFall" layoutX="427.0" layoutY="234.0" mnemonicParsing="false" text="Fall" />
+                        <CheckBox fx:id="seasonWinter" layoutX="427.0" layoutY="264.0" mnemonicParsing="false" text="Winter" />
+                        <Label fx:id="npcVisibleLabel" alignment="TOP_LEFT" layoutX="204.0" layoutY="299.0" prefHeight="198.0" prefWidth="207.0" />
+                        <ComboBox fx:id="npcPickDropdown" layoutX="19.0" layoutY="299.0" prefHeight="26.0" prefWidth="173.0" />
+                        <Label layoutX="21.0" layoutY="265.0" text="NPC is visible" />
+                        <Button fx:id="addDialogueButton" layoutX="86.0" layoutY="66.0" mnemonicParsing="false" onAction="#addDialoguePrereq" text="Add Dialogue" />
+                        <Button fx:id="addNPCVisButton" layoutX="117.0" layoutY="337.0" mnemonicParsing="false" text="Add NPC" />
+                        <Label layoutX="9.0" layoutY="507.0" prefHeight="16.0" prefWidth="92.0" text="ID (Required)" />
+                        <TextField fx:id="idBox" layoutX="108.0" layoutY="503.0" prefHeight="26.0" prefWidth="124.0" />
+                        <Label fx:id="badIDLabel" layoutX="248.0" layoutY="508.0" prefHeight="16.0" prefWidth="205.0" />
                      </children>
                   </AnchorPane>
             </content>
@@ -42,9 +83,6 @@
             </Tab>
         </tabs>
       </TabPane>
-      <Button fx:id="finishButton" layoutX="500.0" layoutY="404.0" mnemonicParsing="false" onAction="#buildPrerequisite" prefHeight="36.0" prefWidth="86.0" text="Finish" />
-      <TextField fx:id="idBox" layoutX="113.0" layoutY="409.0" prefHeight="26.0" prefWidth="92.0" />
-      <Label layoutX="14.0" layoutY="414.0" prefHeight="16.0" prefWidth="92.0" text="ID (Required)" />
-      <Label fx:id="badIDLabel" layoutX="216.0" layoutY="414.0" prefHeight="16.0" prefWidth="259.0" />
+      <Button fx:id="finishButton" mnemonicParsing="false" onAction="#buildPrerequisite" prefHeight="36.0" prefWidth="86.0" text="Finish" GridPane.columnIndex="6" GridPane.rowIndex="8" />
    </children>
-</AnchorPane>
+</GridPane>
