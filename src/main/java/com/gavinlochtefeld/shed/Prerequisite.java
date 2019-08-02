@@ -1,69 +1,71 @@
 package com.gavinlochtefeld.shed;
 
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
+import java.util.HashMap;
 
 public class Prerequisite {
-    private static final List<Integer> TAKEN_ID = Arrays.asList(35, 36, 4, 831125, 2481135, 34, 45, 53, 639373, 101, 233104,
-            611439, 191393, 502261, 502969, 463391, 611173, 611173, 2123243, 92, 3910674, 3910974, 3900074, 691039,
-            50, 51, 584059, 18, 19, 21, 2119820, 56, 2123343, 2120303, 528052, 529952, 67, 5, 47, 2346097, 2346096,
-            2346095, 2346094, 2111194, 2111294, 3333094, 2346093, 2346092, 2346091, 2146991, 55, 63, 992553, 900553,
-            992253, 65, 66, 690006, 68, 69, 70, 71, 72, 73, 74, 75, 76, 706, 707, 1590166, 897405, 91, 93, 102,
-            2118991, 2128292, 901756, 100162, 39, 423502, 11, 12, 15, 917409, 471942, 195019, 195012, 2, 8, 26,
-            384883, 384882, 404798, 371652, 95, 94, 44, 46, 100, 38, 7, 57, 571102, 40, 96, 97, 911526, 195099,
-            195013, 6, 9, 25, 33, 10, 503180, 13, 20, 288847, 29, 43, 733330, 739330, 711130, 1848481, 0, 112, 418172,
-            60367, 4081148, 9581348, 520702, 2794460, 27, 14, 52, 54, 181928, 318560, 611944, 3910975, 3910979, 558291,
-            558292, 1, 3, 16, 17, 58, 3102768);
-    private static final HashSet<Integer> TAKEN = new HashSet<>(TAKEN_ID);
+    // Context
+    private int id = 8675309;
+    private ArrayList<String> idNotInProgress = new ArrayList<>(); // /A <dialogue id>
+    private boolean festivalDay = false; // /F
+    private ArrayList<String> weekdays = new ArrayList<>(); // /d <day of week>
+    private double randomChance = 0.0; // /r <number>
+    private String weather = ""; // /w <weather>
+    private int year = 1; // /y <year>
+    private ArrayList<String> seasons = new ArrayList<>(); // /z <season>
 
-    private int id;
-    private ArrayList<String> contextReq = new ArrayList<>();
-    private ArrayList<String> currentPlayerReq = new ArrayList<>();
-    private ArrayList<String> hostPlayerReq = new ArrayList<>();
+    // Current Player
+    private String datingName = ""; // /D <name>
+    private boolean finishedJoja = false; // /J
+    private int money = 0; // /M <number
+    private ArrayList<Integer> secretNotes = new ArrayList<>(); // /S <secret node id>
+    private int[] currentTilePosition = new int[] {0,0}; // /a <x> <y>
+    private int bottomMineCount = 0; // /b <number>
+    private int freeInventorySlots = 0; // /c <number>
+    private ArrayList<String> seenEvents = new ArrayList<>(); // /e <event id>
+    private HashMap<String,Integer> friendshipLevel = new HashMap<>(); // /f <name> <number>
+    private String gender = "male"; // /g <gender> ("male" or "female")
+    private String pet = "cat"; // /h <pet> ("cat" or "dog")
+    private ArrayList<Integer> hasItemIDs = new ArrayList<>(); // /i <item ID>
+    private int playedDays = 0; // /j <number>
+    private ArrayList<String> notSeenEvents = new ArrayList<>(); // /k <event ID>
+    private ArrayList<String> notSeenLetters = new ArrayList<>(); // /l <letter ID>
+    private int earnedMoney = 0; // /m <number>, current $ doesn't matter
+    private ArrayList<String> seenLetters = new ArrayList<>(); // /n <letter ID>
+    private String marriedNPC = ""; // /o <name>
+    private String npcInLocation = ""; // /p <name>
+    private ArrayList<String> chosenDialogueID = new ArrayList<>(); // /q <dialogue ID>
+    private HashMap<String, Integer> shippedItem = new HashMap<>(); // /s <item ID> <number>
+    private int[] betweenTime = new int[] {0,0}; // /t <min time> <max time>
+    private ArrayList<Integer> date = new ArrayList<>(); // /u <day of month>
+    private HashMap<String,String> seeEventLetterReturnFalse = new HashMap<>(); // /x <event ID> <letter ID>
 
+    // Host Player
+    private boolean finishedCC = false; // /C
+    private boolean isHostPlayer = false; // /H
+    private ArrayList<String> hostNoLetter = new ArrayList<>(); // /Hl <letter ID>
+    private ArrayList<String> hostLetter = new ArrayList<>(); // /Hn <letter ID>
+    private ArrayList<String> hostAndPlayerNoLetter = new ArrayList<>(); // /*l <letter ID>
+    private ArrayList<String> hostAndPlayerLetter = new ArrayList<>(); // /*n <letter ID>
 
-    public static boolean isFreeID(int id) {
-        if (TAKEN.contains(id))
-            return false;
-        return true;
+    public String savePrerequisites() {
+        Gson gson = new Gson();
+        return gson.toJson(this);
     }
 
-    public Prerequisite(int potentialID) throws Exception {
-        if (isFreeID(potentialID))
-            throw new Exception();
-        else {
-            this.id = potentialID;
-        }
+    public String toString() {
+        return "<Prerequisite id=" + this.id + ">";
     }
 
-
-    public void add(String reqArea, ArrayList<String> req) throws IllegalStateException {
-        switch (reqArea) {
-            case "context":
-                this.contextReq.addAll(req);
-                break;
-            case "currentPlayer":
-                this.currentPlayerReq.addAll(req);
-                break;
-            case "hostPlayer":
-                this.hostPlayerReq.addAll(req);
-            default:
-                throw new IllegalStateException("Unexpected value: " + reqArea);
-        }
+    public Prerequisite getPrerequisiteFromJSON(String json) {
+        Gson gson = new Gson();
+        return gson.fromJson(json, Prerequisite.class);
     }
-    /*
-    public HashMap<String,ArrayList<String>> exportToHashMap() {
-    TODO: Export as hashmap
-    }
-    */
 
     public String exportToString() {
         String finalString = Integer.toString(this.id);
-        for (String s : this.hostPlayerReq) finalString += "/" + s;
-        for (String s : this.currentPlayerReq) finalString += "/" + s;
-        for (String s : this.contextReq) finalString += "/" + s;
         return finalString;
     }
 
