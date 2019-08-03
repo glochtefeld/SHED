@@ -6,6 +6,158 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Prerequisite {
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setIdNotInProgress(ArrayList<String> idNotInProgress) {
+        this.idNotInProgress = idNotInProgress;
+    }
+
+    public void setFestivalDay(boolean festivalDay) {
+        this.festivalDay = festivalDay;
+    }
+
+    public void setWeekdays(ArrayList<String> weekdays) {
+        this.weekdays = weekdays;
+    }
+
+    public void setRandomChance(double randomChance) {
+        this.randomChance = randomChance;
+    }
+
+    public void setWeather(String weather) {
+        this.weather = weather;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+    public void setSeasons(ArrayList<String> seasons) {
+        this.seasons = seasons;
+    }
+
+    public void setDatingName(String datingName) {
+        this.datingName = datingName;
+    }
+
+    public void setFinishedJoja(boolean finishedJoja) {
+        this.finishedJoja = finishedJoja;
+    }
+
+    public void setMoney(int money) {
+        this.money = money;
+    }
+
+    public void setSecretNotes(ArrayList<Integer> secretNotes) {
+        this.secretNotes = secretNotes;
+    }
+
+    public void setCurrentTilePosition(int[] currentTilePosition) {
+        this.currentTilePosition = currentTilePosition;
+    }
+
+    public void setBottomMineCount(int bottomMineCount) {
+        this.bottomMineCount = bottomMineCount;
+    }
+
+    public void setFreeInventorySlots(int freeInventorySlots) {
+        this.freeInventorySlots = freeInventorySlots;
+    }
+
+    public void setSeenEvents(ArrayList<String> seenEvents) {
+        this.seenEvents = seenEvents;
+    }
+
+    public void setFriendshipLevel(HashMap<String, Integer> friendshipLevel) {
+        this.friendshipLevel = friendshipLevel;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public void setPet(String pet) {
+        this.pet = pet;
+    }
+
+    public void setHasItemIDs(ArrayList<Integer> hasItemIDs) {
+        this.hasItemIDs = hasItemIDs;
+    }
+
+    public void setPlayedDays(int playedDays) {
+        this.playedDays = playedDays;
+    }
+
+    public void setNotSeenEvents(ArrayList<String> notSeenEvents) {
+        this.notSeenEvents = notSeenEvents;
+    }
+
+    public void setNotSeenLetters(ArrayList<String> notSeenLetters) {
+        this.notSeenLetters = notSeenLetters;
+    }
+
+    public void setEarnedMoney(int earnedMoney) {
+        this.earnedMoney = earnedMoney;
+    }
+
+    public void setSeenLetters(ArrayList<String> seenLetters) {
+        this.seenLetters = seenLetters;
+    }
+
+    public void setNotMarriedNPC(ArrayList<String> notMarriedNPC) {
+        this.notMarriedNPC = notMarriedNPC;
+    }
+
+    public void setNpcInLocation(ArrayList<String> npcInLocation) {
+        this.npcInLocation = npcInLocation;
+    }
+
+    public void setChosenDialogueID(ArrayList<String> chosenDialogueID) {
+        this.chosenDialogueID = chosenDialogueID;
+    }
+
+    public void setShippedItem(HashMap<String, Integer> shippedItem) {
+        this.shippedItem = shippedItem;
+    }
+
+    public void setBetweenTime(int[] betweenTime) {
+        this.betweenTime = betweenTime;
+    }
+
+    public void setDate(ArrayList<Integer> date) {
+        this.date = date;
+    }
+
+    public void setSeeEventLetterReturnFalse(HashMap<String, String> seeEventLetterReturnFalse) {
+        this.seeEventLetterReturnFalse = seeEventLetterReturnFalse;
+    }
+
+    public void setFinishedCC(boolean finishedCC) {
+        this.finishedCC = finishedCC;
+    }
+
+    public void setHostPlayer(boolean hostPlayer) {
+        isHostPlayer = hostPlayer;
+    }
+
+    public void setHostNoLetter(ArrayList<String> hostNoLetter) {
+        this.hostNoLetter = hostNoLetter;
+    }
+
+    public void setHostLetter(ArrayList<String> hostLetter) {
+        this.hostLetter = hostLetter;
+    }
+
+    public void setHostAndPlayerNoLetter(ArrayList<String> hostAndPlayerNoLetter) {
+        this.hostAndPlayerNoLetter = hostAndPlayerNoLetter;
+    }
+
+    public void setHostAndPlayerLetter(ArrayList<String> hostAndPlayerLetter) {
+        this.hostAndPlayerLetter = hostAndPlayerLetter;
+    }
+
     // Context
     private int id = 8675309;
     private ArrayList<String> idNotInProgress = new ArrayList<>(); // /A <dialogue id>
@@ -34,8 +186,8 @@ public class Prerequisite {
     private ArrayList<String> notSeenLetters = new ArrayList<>(); // /l <letter ID>
     private int earnedMoney = 0; // /m <number>, current $ doesn't matter
     private ArrayList<String> seenLetters = new ArrayList<>(); // /n <letter ID>
-    private String marriedNPC = ""; // /o <name>
-    private String npcInLocation = ""; // /p <name>
+    private ArrayList<String> notMarriedNPC = new ArrayList<>(); // /o <name>
+    private ArrayList<String> npcInLocation = new ArrayList<>(); // /p <name>
     private ArrayList<String> chosenDialogueID = new ArrayList<>(); // /q <dialogue ID>
     private HashMap<String, Integer> shippedItem = new HashMap<>(); // /s <item ID> <number>
     private int[] betweenTime = new int[]{0, 0}; // /t <min time> <max time>
@@ -55,6 +207,7 @@ public class Prerequisite {
         return gson.toJson(this);
     }
 
+    @Override
     public String toString() {
         return "<Prerequisite id=" + this.id + ">";
     }
@@ -71,16 +224,14 @@ public class Prerequisite {
         if (this.finishedJoja) finalString += "/J";
         if (this.money != 0) finalString += "/M " + this.money;
         if (this.secretNotes.size() > 0) {
-            finalString += "/S";
-            for (int note : this.secretNotes) finalString += " " + note; //TODO: Check if event should be separated
+            for (int note : this.secretNotes) finalString += "/S " + note;
         }
         if (!this.currentTilePosition.equals(new int[]{0, 0})) finalString +=
                 "/a " + this.currentTilePosition[0] + " " + this.currentTilePosition[1];
         if (this.bottomMineCount != 0)  finalString += "/b " + this.bottomMineCount;
         if (this.freeInventorySlots != 0) finalString += "/c " + this.freeInventorySlots;
         if (this.seenEvents.size() > 0) {
-            finalString += "/e";
-            for (String event : this.seenEvents) finalString += " " + event; //TODO: Check if events should be separated
+            for (String event : this.seenEvents) finalString += "/e " + event;
         }
         if (this.friendshipLevel.size() > 0) {
             finalString += "/f";
@@ -89,25 +240,26 @@ public class Prerequisite {
         if (!this.gender.equals("")) finalString += "/g " + this.gender;
         if (!this.pet.equals("")) finalString += "/h " + this.pet;
         if (this.hasItemIDs.size() > 0) {
-            finalString += "/i";
-            for (int itemID : this.hasItemIDs) finalString += " " + itemID; //TODO: check if ID should be separate
+            for (int itemID : this.hasItemIDs) finalString += "/i " + itemID;
         }
         if (this.playedDays != 0) finalString += "/j " + this.playedDays;
         if (this.notSeenEvents.size() > 0) {
-            finalString += "/k";
-            for (String events : this.notSeenEvents) finalString += " " + events; //TODO: check if separated
+            for (String events : this.notSeenEvents) finalString += "/k " + events;
         }
         if (this.notSeenLetters.size() > 0) {
-            finalString += "/l";
-            for (String letters : this.notSeenLetters) finalString += " " + letters; //TODO: check if separated
+            for (String letters : this.notSeenLetters) finalString += "/l " + letters;
         }
         if (this.earnedMoney != 0) finalString += "/m " + this.earnedMoney;
         if (this.seenLetters.size() > 0) {
             finalString += "/n";
             for (String letter : this.seenLetters) finalString += " " + letter;
         }
-        if (!this.marriedNPC.equals("")) finalString += "/o " + this.marriedNPC;
-        if (!this.npcInLocation.equals("")) finalString += "/p " + this.npcInLocation; //TODO: check if could be multiple
+        if (this.notMarriedNPC.size() > 0) {
+            for (String npc : this.notMarriedNPC) finalString += "/o " + this.notMarriedNPC;
+        }
+        if (this.npcInLocation.size() > 0) {
+            for(String name : this.npcInLocation) finalString += "/p " + this.npcInLocation;
+        }
         if (this.chosenDialogueID.size() > 0) {
             for (String events : this.notSeenEvents) finalString += "/q " + events;
         }
@@ -117,7 +269,7 @@ public class Prerequisite {
         }
         if (this.betweenTime == new int[] {0,0}) finalString += "/t " + this.betweenTime[0] + " " + this.betweenTime[1];
         if (this.date.size() > 0) {
-            for (int date : this.date) finalString += "/u " + date; //TODO: check if separated
+            for (int date : this.date) finalString += "/u " + date;
         }
         if (this.seeEventLetterReturnFalse.size() > 0) {
             finalString += "/f";
@@ -139,8 +291,7 @@ public class Prerequisite {
         if (!this.weather.equals("")) finalString += "/w " + this.weather;
         if (this.year != 0) finalString += "/y " + this.year;
         if (this.seasons.size() > 0) {
-            finalString += "/z";
-            for (String season : this.seasons) finalString += " " + season;
+            for (String season : this.seasons) finalString += "/z " + season;
         }
 
         // Host Player
@@ -162,13 +313,3 @@ public class Prerequisite {
     }
 
 }
-
-/*
-    // Host Player{
-    private boolean finishedCC = false; // /C
-    private boolean isHostPlayer = false; // /H
-    private ArrayList<String> hostNoLetter = new ArrayList<>(); // /Hl <letter ID>
-    private ArrayList<String> hostLetter = new ArrayList<>(); // /Hn <letter ID>
-    private ArrayList<String> hostAndPlayerNoLetter = new ArrayList<>(); // /*l <letter ID>
-    private ArrayList<String> hostAndPlayerLetter = new ArrayList<>(); // /*n <letter ID>
- */
