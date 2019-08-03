@@ -142,7 +142,33 @@ public class Prerequisite {
             finalString += "/z";
             for (String season : this.seasons) finalString += " " + season;
         }
+
+        // Host Player
+        if (this.finishedCC) finalString += "/C ";
+        if (this.isHostPlayer) finalString += "/H ";
+        if (this.hostNoLetter.size() > 0) {
+            for (String letter : this.hostNoLetter) finalString += "/Hl " + letter;
+        }
+        if (this.hostLetter.size() > 0) {
+            for (String letter : this.hostLetter) finalString += "/Hn " + letter;
+        }
+        if (this.hostAndPlayerNoLetter.size() > 0) {
+            for (String letter : this.hostAndPlayerNoLetter) finalString += "/*l " + letter;
+        }
+        if (this.hostAndPlayerLetter.size() > 0) {
+            for (String letter : this.hostAndPlayerLetter) finalString += "/*n " + letter;
+        }
         return finalString;
     }
 
 }
+
+/*
+    // Host Player{
+    private boolean finishedCC = false; // /C
+    private boolean isHostPlayer = false; // /H
+    private ArrayList<String> hostNoLetter = new ArrayList<>(); // /Hl <letter ID>
+    private ArrayList<String> hostLetter = new ArrayList<>(); // /Hn <letter ID>
+    private ArrayList<String> hostAndPlayerNoLetter = new ArrayList<>(); // /*l <letter ID>
+    private ArrayList<String> hostAndPlayerLetter = new ArrayList<>(); // /*n <letter ID>
+ */
