@@ -165,7 +165,7 @@ public class Prerequisite {
     private ArrayList<String> weekdays = new ArrayList<>(); // /d <day of week>
     private double randomChance = 0.0; // /r <number>
     private String weather = ""; // /w <weather>
-    private int year = 1; // /y <year>
+    private int year = 0; // /y <year>
     private ArrayList<String> seasons = new ArrayList<>(); // /z <season>
 
     // Current Player
@@ -173,7 +173,7 @@ public class Prerequisite {
     private boolean finishedJoja = false; // /J
     private int money = 0; // /M <number
     private ArrayList<Integer> secretNotes = new ArrayList<>(); // /S <secret node id>
-    private int[] currentTilePosition = new int[]{0, 0}; // /a <x> <y>
+    private int[] currentTilePosition; // /a <x> <y>
     private int bottomMineCount = 0; // /b <number>
     private int freeInventorySlots = 0; // /c <number>
     private ArrayList<String> seenEvents = new ArrayList<>(); // /e <event id>
@@ -226,7 +226,7 @@ public class Prerequisite {
         if (this.secretNotes.size() > 0) {
             for (int note : this.secretNotes) finalString += "/S " + note;
         }
-        if (!this.currentTilePosition.equals(new int[]{0, 0})) finalString +=
+        if (this.currentTilePosition != null) finalString +=
                 "/a " + this.currentTilePosition[0] + " " + this.currentTilePosition[1];
         if (this.bottomMineCount != 0)  finalString += "/b " + this.bottomMineCount;
         if (this.freeInventorySlots != 0) finalString += "/c " + this.freeInventorySlots;
