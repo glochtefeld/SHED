@@ -7,7 +7,7 @@ If you have any questions about the repository, feel free to let me know. This p
 MIT license. 
 
 ## About
-SHED is a utility for modders of the game [Stardew Valley](https://www.stardewvalley.com). It will allow users to create and edit
+SHED is a utility for modders of the game [Stardew Valley](https://www.stardewvalley.net). It will allow users to create and edit
 heart event data through a graphical user interface, so long as that data is in the JSON format. If you're looking to 
 start using SHED and don't know how to access event data, take a look through the 
 [Stardew Valley Wiki Page](https://www.stardewvalleywiki.com/Modding:Event_data) on the subject. When the project is complete, 
