@@ -97,10 +97,10 @@ public class PreReqController implements Initializable {
                 this.prereq.setRandomChance(getRandNum());
             if (weatherDropdown.getValue() != null)
                 this.prereq.setWeather(weatherDropdown.getValue());
-            /*if (isInteger(yearEntry.getText()))
+            if (isInteger(yearEntry.getText()))
                 this.prereq.setYear(Integer.parseInt(yearEntry.getText()));
 
-            this.prereq.setSeasons(getSeasons()); */
+            this.prereq.setSeasons(getSeasons());
 
 
 
@@ -123,6 +123,17 @@ public class PreReqController implements Initializable {
         if (daySat.isSelected()) weekdays.add("Sat");
         if (daySun.isSelected()) weekdays.add("Sun");
         return weekdays;
+    }
+
+    @FXML
+    private void setWeekdayValue(ArrayList<String> week) {
+        if (week.contains("Mon")) dayMon.setSelected(true);
+        if (week.contains("Tue")) dayTue.setSelected(true);
+        if (week.contains("Wed")) dayWed.setSelected(true);
+        if (week.contains("Thu")) dayThu.setSelected(true);
+        if (week.contains("Fri")) dayFri.setSelected(true);
+        if (week.contains("Sat")) daySat.setSelected(true);
+        if (week.contains("Sun")) daySun.setSelected(true);
     }
 
     private ArrayList<String> getSeasons() {
