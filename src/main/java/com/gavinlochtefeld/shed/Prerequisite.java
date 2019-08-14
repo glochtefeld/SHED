@@ -6,152 +6,304 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Prerequisite {
+    public int getId() {
+        return id;
+    }
+
     public void setId(int id) {
         this.id = id;
+    }
+
+    public ArrayList<String> getIdNotInProgress() {
+        return idNotInProgress;
     }
 
     public void setIdNotInProgress(ArrayList<String> idNotInProgress) {
         this.idNotInProgress = idNotInProgress;
     }
 
+    public boolean isFestivalDay() {
+        return festivalDay;
+    }
+
     public void setFestivalDay(boolean festivalDay) {
         this.festivalDay = festivalDay;
+    }
+
+    public ArrayList<String> getWeekdays() {
+        return weekdays;
     }
 
     public void setWeekdays(ArrayList<String> weekdays) {
         this.weekdays = weekdays;
     }
 
+    public double getRandomChance() {
+        return randomChance;
+    }
+
     public void setRandomChance(double randomChance) {
         this.randomChance = randomChance;
+    }
+
+    public String getWeather() {
+        return weather;
     }
 
     public void setWeather(String weather) {
         this.weather = weather;
     }
 
+    public int getYear() {
+        return year;
+    }
+
     public void setYear(int year) {
         this.year = year;
+    }
+
+    public ArrayList<String> getSeasons() {
+        return seasons;
     }
 
     public void setSeasons(ArrayList<String> seasons) {
         this.seasons = seasons;
     }
 
+    public String getDatingName() {
+        return datingName;
+    }
+
     public void setDatingName(String datingName) {
         this.datingName = datingName;
+    }
+
+    public boolean isFinishedJoja() {
+        return finishedJoja;
     }
 
     public void setFinishedJoja(boolean finishedJoja) {
         this.finishedJoja = finishedJoja;
     }
 
+    public int getMoney() {
+        return money;
+    }
+
     public void setMoney(int money) {
         this.money = money;
+    }
+
+    public ArrayList<Integer> getSecretNotes() {
+        return secretNotes;
     }
 
     public void setSecretNotes(ArrayList<Integer> secretNotes) {
         this.secretNotes = secretNotes;
     }
 
+    public int[] getCurrentTilePosition() {
+        return currentTilePosition;
+    }
+
     public void setCurrentTilePosition(int[] currentTilePosition) {
         this.currentTilePosition = currentTilePosition;
+    }
+
+    public int getBottomMineCount() {
+        return bottomMineCount;
     }
 
     public void setBottomMineCount(int bottomMineCount) {
         this.bottomMineCount = bottomMineCount;
     }
 
+    public int getFreeInventorySlots() {
+        return freeInventorySlots;
+    }
+
     public void setFreeInventorySlots(int freeInventorySlots) {
         this.freeInventorySlots = freeInventorySlots;
+    }
+
+    public ArrayList<String> getSeenEvents() {
+        return seenEvents;
     }
 
     public void setSeenEvents(ArrayList<String> seenEvents) {
         this.seenEvents = seenEvents;
     }
 
+    public HashMap<String, Integer> getFriendshipLevel() {
+        return friendshipLevel;
+    }
+
     public void setFriendshipLevel(HashMap<String, Integer> friendshipLevel) {
         this.friendshipLevel = friendshipLevel;
+    }
+
+    public String getGender() {
+        return gender;
     }
 
     public void setGender(String gender) {
         this.gender = gender;
     }
 
+    public String getPet() {
+        return pet;
+    }
+
     public void setPet(String pet) {
         this.pet = pet;
+    }
+
+    public ArrayList<Integer> getHasItemIDs() {
+        return hasItemIDs;
     }
 
     public void setHasItemIDs(ArrayList<Integer> hasItemIDs) {
         this.hasItemIDs = hasItemIDs;
     }
 
+    public int getPlayedDays() {
+        return playedDays;
+    }
+
     public void setPlayedDays(int playedDays) {
         this.playedDays = playedDays;
+    }
+
+    public ArrayList<String> getNotSeenEvents() {
+        return notSeenEvents;
     }
 
     public void setNotSeenEvents(ArrayList<String> notSeenEvents) {
         this.notSeenEvents = notSeenEvents;
     }
 
+    public ArrayList<String> getNotSeenLetters() {
+        return notSeenLetters;
+    }
+
     public void setNotSeenLetters(ArrayList<String> notSeenLetters) {
         this.notSeenLetters = notSeenLetters;
+    }
+
+    public int getEarnedMoney() {
+        return earnedMoney;
     }
 
     public void setEarnedMoney(int earnedMoney) {
         this.earnedMoney = earnedMoney;
     }
 
+    public ArrayList<String> getSeenLetters() {
+        return seenLetters;
+    }
+
     public void setSeenLetters(ArrayList<String> seenLetters) {
         this.seenLetters = seenLetters;
+    }
+
+    public ArrayList<String> getNotMarriedNPC() {
+        return notMarriedNPC;
     }
 
     public void setNotMarriedNPC(ArrayList<String> notMarriedNPC) {
         this.notMarriedNPC = notMarriedNPC;
     }
 
+    public ArrayList<String> getNpcInLocation() {
+        return npcInLocation;
+    }
+
     public void setNpcInLocation(ArrayList<String> npcInLocation) {
         this.npcInLocation = npcInLocation;
+    }
+
+    public ArrayList<String> getChosenDialogueID() {
+        return chosenDialogueID;
     }
 
     public void setChosenDialogueID(ArrayList<String> chosenDialogueID) {
         this.chosenDialogueID = chosenDialogueID;
     }
 
+    public HashMap<String, Integer> getShippedItem() {
+        return shippedItem;
+    }
+
     public void setShippedItem(HashMap<String, Integer> shippedItem) {
         this.shippedItem = shippedItem;
+    }
+
+    public int[] getBetweenTime() {
+        return betweenTime;
     }
 
     public void setBetweenTime(int[] betweenTime) {
         this.betweenTime = betweenTime;
     }
 
+    public ArrayList<Integer> getDate() {
+        return date;
+    }
+
     public void setDate(ArrayList<Integer> date) {
         this.date = date;
+    }
+
+    public HashMap<String, String> getSeeEventLetterReturnFalse() {
+        return seeEventLetterReturnFalse;
     }
 
     public void setSeeEventLetterReturnFalse(HashMap<String, String> seeEventLetterReturnFalse) {
         this.seeEventLetterReturnFalse = seeEventLetterReturnFalse;
     }
 
+    public boolean isFinishedCC() {
+        return finishedCC;
+    }
+
     public void setFinishedCC(boolean finishedCC) {
         this.finishedCC = finishedCC;
+    }
+
+    public boolean isHostPlayer() {
+        return isHostPlayer;
     }
 
     public void setHostPlayer(boolean hostPlayer) {
         isHostPlayer = hostPlayer;
     }
 
+    public ArrayList<String> getHostNoLetter() {
+        return hostNoLetter;
+    }
+
     public void setHostNoLetter(ArrayList<String> hostNoLetter) {
         this.hostNoLetter = hostNoLetter;
+    }
+
+    public ArrayList<String> getHostLetter() {
+        return hostLetter;
     }
 
     public void setHostLetter(ArrayList<String> hostLetter) {
         this.hostLetter = hostLetter;
     }
 
+    public ArrayList<String> getHostAndPlayerNoLetter() {
+        return hostAndPlayerNoLetter;
+    }
+
     public void setHostAndPlayerNoLetter(ArrayList<String> hostAndPlayerNoLetter) {
         this.hostAndPlayerNoLetter = hostAndPlayerNoLetter;
+    }
+
+    public ArrayList<String> getHostAndPlayerLetter() {
+        return hostAndPlayerLetter;
     }
 
     public void setHostAndPlayerLetter(ArrayList<String> hostAndPlayerLetter) {

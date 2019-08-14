@@ -4,6 +4,7 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
@@ -23,16 +24,29 @@
                            <children>
                               <Label prefHeight="16.0" prefWidth="197.0" text="Previously Seen Events" />
                               <TextField fx:id="dialogueReqInput" prefHeight="26.0" prefWidth="155.0" />
-                              <Button fx:id="addDialogueButton" mnemonicParsing="false" text="Add" />
-                              <Label fx:id="dialogueReqOutLabel" alignment="TOP_LEFT" prefHeight="184.0" prefWidth="199.0" />
+                              <Button fx:id="addDialogueButton" mnemonicParsing="false" onAction="#addDialoguePrereq" text="Add" />
+                              <Label fx:id="dialogueReqOutLabel" alignment="TOP_LEFT" prefHeight="184.0" prefWidth="199.0" wrapText="true" />
                               <Label prefHeight="16.0" prefWidth="205.0" text="Days where this CAN'T happen" />
-                              <CheckBox mnemonicParsing="false" prefHeight="18.0" prefWidth="58.0" text="Mon" />
-                              <CheckBox mnemonicParsing="false" text="Tue" />
-                              <CheckBox mnemonicParsing="false" text="Wed" />
-                              <CheckBox mnemonicParsing="false" prefHeight="18.0" prefWidth="59.0" text="Thu" />
-                              <CheckBox mnemonicParsing="false" prefHeight="18.0" prefWidth="49.0" text="Fri" />
-                              <CheckBox mnemonicParsing="false" text="Sat" />
-                              <CheckBox mnemonicParsing="false" text="Sun" />
+                              <CheckBox fx:id="dayMon" mnemonicParsing="false" prefHeight="18.0" prefWidth="58.0" text="Mon" />
+                              <CheckBox fx:id="dayTue" mnemonicParsing="false" text="Tue" />
+                              <CheckBox fx:id="dayWed" mnemonicParsing="false" text="Wed" />
+                              <CheckBox fx:id="dayThu" mnemonicParsing="false" prefHeight="18.0" prefWidth="59.0" text="Thu" />
+                              <CheckBox fx:id="dayFri" mnemonicParsing="false" prefHeight="18.0" prefWidth="58.0" text="Fri" />
+                              <CheckBox fx:id="daySat" mnemonicParsing="false" text="Sat" />
+                              <CheckBox fx:id="daySun" mnemonicParsing="false" text="Sun" />
+                              <ComboBox fx:id="weatherDropdown" prefHeight="26.0" prefWidth="131.0" promptText="weather" />
+                              <Separator prefWidth="200.0" visible="false" />
+                              <CheckBox fx:id="festivalCheck" mnemonicParsing="false" text="Festival Day" />
+                              <Separator prefWidth="200.0" visible="false" />
+                              <Label prefHeight="16.0" prefWidth="114.0" text="Random (ex 0.2)" />
+                              <TextField fx:id="randomChance" prefHeight="26.0" prefWidth="85.0" text="0" />
+                              <TextField fx:id="yearEntry" prefHeight="26.0" prefWidth="96.0" promptText="Year (num)" />
+                              <Separator prefHeight="3.0" prefWidth="105.0" visible="false" />
+                              <Label prefHeight="16.0" prefWidth="236.0" text="Seasons where this CAN'T happen" />
+                              <CheckBox fx:id="seasonSpring" mnemonicParsing="false" prefHeight="18.0" prefWidth="89.0" text="Spring" />
+                              <CheckBox fx:id="seasonSummer" mnemonicParsing="false" prefHeight="18.0" prefWidth="97.0" text="Summer" />
+                              <CheckBox fx:id="seasonFall" mnemonicParsing="false" prefHeight="18.0" prefWidth="90.0" text="Fall" />
+                              <CheckBox fx:id="seasonWinter" mnemonicParsing="false" text="Winter" />
                            </children>
                         </FlowPane>
                      </left>
@@ -41,8 +55,7 @@
                            <children>
                               <ComboBox fx:id="npcPickDropdown" prefHeight="26.0" prefWidth="170.0" promptText="Add NPC Visibility" />
                               <Button fx:id="addNPCVisButton" mnemonicParsing="false" onAction="#addNPCVisPrereq" text="Add" />
-                              <ComboBox fx:id="weatherDropdown" prefHeight="26.0" prefWidth="131.0" promptText="weather" />
-                              <Label fx:id="npcVisableLabel" alignment="TOP_LEFT" prefHeight="178.0" prefWidth="173.0" />
+                              <Label fx:id="npcVisibleLabel" alignment="TOP_LEFT" prefHeight="84.0" prefWidth="349.0" wrapText="true" />
                            </children>
                         </FlowPane>
                      </center>
