@@ -97,10 +97,10 @@ public class PreReqController implements Initializable {
                 this.prereq.setRandomChance(getRandNum());
             if (weatherDropdown.getValue() != null)
                 this.prereq.setWeather(weatherDropdown.getValue());
-            /*if (isInteger(yearEntry.getText()))
+            if (isInteger(yearEntry.getText()))
                 this.prereq.setYear(Integer.parseInt(yearEntry.getText()));
 
-            this.prereq.setSeasons(getSeasons()); */
+            this.prereq.setSeasons(getSeasons());
 
 
 
