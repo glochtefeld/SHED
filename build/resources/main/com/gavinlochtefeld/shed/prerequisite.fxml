@@ -11,63 +11,144 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.FlowPane?>
+<?import org.controlsfx.control.PrefixSelectionComboBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="541.0" prefWidth="820.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gavinlochtefeld.shed.PreReqController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gavinlochtefeld.shed.PreReqController">
    <center>
       <TabPane prefHeight="502.0" prefWidth="769.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
         <tabs>
           <Tab text="Context">
             <content>
                   <BorderPane>
-                     <left>
+                     <right>
+                        <FlowPane prefHeight="470.0" prefWidth="261.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <ComboBox fx:id="npcPickDropdown" prefHeight="26.0" prefWidth="170.0" promptText="Add NPC Visibility" />
+                              <Button fx:id="addNPCVisButton" mnemonicParsing="false" onAction="#addNPCVisPrereq" text="Add" />
+                              <Label fx:id="npcVisibleLabel" alignment="TOP_LEFT" prefHeight="430.0" prefWidth="349.0" wrapText="true" />
+                           </children></FlowPane>
+                     </right>
+                     <center>
                         <FlowPane prefHeight="470.0" prefWidth="211.0" BorderPane.alignment="CENTER">
                            <children>
-                              <Label prefHeight="16.0" prefWidth="197.0" text="Previously Seen Events" />
+                              <Label prefHeight="16.0" prefWidth="197.0" text="Dialogue In Progress" />
                               <TextField fx:id="dialogueReqInput" prefHeight="26.0" prefWidth="155.0" />
                               <Button fx:id="addDialogueButton" mnemonicParsing="false" onAction="#addDialoguePrereq" text="Add" />
-                              <Label fx:id="dialogueReqOutLabel" alignment="TOP_LEFT" prefHeight="184.0" prefWidth="199.0" wrapText="true" />
+                              <Label fx:id="dialogueReqOutLabel" alignment="TOP_LEFT" prefHeight="68.0" prefWidth="467.0" wrapText="true" />
                               <Label prefHeight="16.0" prefWidth="205.0" text="Days where this CAN'T happen" />
+                              <Separator prefHeight="0.0" prefWidth="260.0" visible="false" />
                               <CheckBox fx:id="dayMon" mnemonicParsing="false" prefHeight="18.0" prefWidth="58.0" text="Mon" />
                               <CheckBox fx:id="dayTue" mnemonicParsing="false" text="Tue" />
                               <CheckBox fx:id="dayWed" mnemonicParsing="false" text="Wed" />
                               <CheckBox fx:id="dayThu" mnemonicParsing="false" prefHeight="18.0" prefWidth="59.0" text="Thu" />
-                              <CheckBox fx:id="dayFri" mnemonicParsing="false" prefHeight="18.0" prefWidth="58.0" text="Fri" />
+                              <CheckBox fx:id="dayFri" mnemonicParsing="false" prefHeight="18.0" prefWidth="50.0" text="Fri" />
                               <CheckBox fx:id="daySat" mnemonicParsing="false" text="Sat" />
                               <CheckBox fx:id="daySun" mnemonicParsing="false" text="Sun" />
+                              <Separator prefHeight="13.0" prefWidth="457.0" visible="false" />
                               <ComboBox fx:id="weatherDropdown" prefHeight="26.0" prefWidth="131.0" promptText="weather" />
-                              <Separator prefWidth="200.0" visible="false" />
                               <CheckBox fx:id="festivalCheck" mnemonicParsing="false" text="Festival Day" />
                               <Separator prefWidth="200.0" visible="false" />
                               <Label prefHeight="16.0" prefWidth="114.0" text="Random (ex 0.2)" />
                               <TextField fx:id="randomChance" prefHeight="26.0" prefWidth="85.0" text="0" />
                               <TextField fx:id="yearEntry" prefHeight="26.0" prefWidth="96.0" promptText="Year (num)" />
-                              <Separator prefHeight="3.0" prefWidth="105.0" visible="false" />
-                              <Label prefHeight="16.0" prefWidth="236.0" text="Seasons where this CAN'T happen" />
+                              <Label prefHeight="16.0" prefWidth="227.0" text="Seasons where this CAN'T happen" />
+                              <Separator prefHeight="1.0" prefWidth="236.0" visible="false" />
                               <CheckBox fx:id="seasonSpring" mnemonicParsing="false" prefHeight="18.0" prefWidth="89.0" text="Spring" />
                               <CheckBox fx:id="seasonSummer" mnemonicParsing="false" prefHeight="18.0" prefWidth="97.0" text="Summer" />
                               <CheckBox fx:id="seasonFall" mnemonicParsing="false" prefHeight="18.0" prefWidth="90.0" text="Fall" />
                               <CheckBox fx:id="seasonWinter" mnemonicParsing="false" text="Winter" />
                            </children>
                         </FlowPane>
-                     </left>
-                     <center>
-                        <FlowPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-                           <children>
-                              <ComboBox fx:id="npcPickDropdown" prefHeight="26.0" prefWidth="170.0" promptText="Add NPC Visibility" />
-                              <Button fx:id="addNPCVisButton" mnemonicParsing="false" onAction="#addNPCVisPrereq" text="Add" />
-                              <Label fx:id="npcVisibleLabel" alignment="TOP_LEFT" prefHeight="84.0" prefWidth="349.0" wrapText="true" />
-                           </children>
-                        </FlowPane>
                      </center>
-                     <right>
-                        <FlowPane prefHeight="470.0" prefWidth="261.0" BorderPane.alignment="CENTER" />
-                     </right>
                   </BorderPane>
             </content>
           </Tab>
           <Tab text="Player">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  <BorderPane>
+                     <left>
+                        <FlowPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <CheckBox fx:id="finishedJoja" mnemonicParsing="false" text="Finished Joja" />
+                              <Separator prefHeight="0.0" prefWidth="86.0" visible="false" />
+                              <Label prefHeight="16.0" prefWidth="122.0" text="Money Earned" />
+                              <TextField fx:id="money" alignment="CENTER_RIGHT" prefHeight="26.0" prefWidth="73.0" promptText="0" />
+                              <Label prefHeight="16.0" prefWidth="122.0" text="Current Money" />
+                              <TextField fx:id="currentMoney" alignment="CENTER_RIGHT" prefHeight="26.0" prefWidth="73.0" promptText="0" />
+                              <Label prefHeight="16.0" prefWidth="147.0" text="Bottom Mine count" />
+                              <TextField fx:id="bottomMine" alignment="CENTER_RIGHT" prefHeight="26.0" prefWidth="47.0" promptText="0" />
+                              <Label prefHeight="16.0" prefWidth="149.0" text="Free Inventory Slots" />
+                              <TextField fx:id="freeInventorySlots" alignment="CENTER_RIGHT" prefHeight="26.0" prefWidth="45.0" promptText="0" />
+                              <Label prefHeight="16.0" prefWidth="104.0" text="Played Days" />
+                              <TextField fx:id="playedDays" alignment="CENTER_RIGHT" prefHeight="26.0" prefWidth="90.0" promptText="0" />
+                              <Label prefHeight="16.0" prefWidth="191.0" text="Between Time" />
+                              <TextField fx:id="startTime" prefHeight="26.0" prefWidth="55.0" promptText="0000" />
+                              <Label alignment="CENTER" prefHeight="16.0" prefWidth="79.0" text="to" />
+                              <TextField fx:id="endTime" prefHeight="26.0" prefWidth="58.0" promptText="2350" />
+                              <Label prefHeight="16.0" prefWidth="125.0" text="Starting Position X " />
+                              <TextField prefHeight="26.0" prefWidth="40.0" promptText="0" fx:id="xPos" />
+                              <Label text="Y" />
+                              <TextField fx:id="yPos" prefHeight="26.0" prefWidth="41.0" promptText="0" />
+                              <ComboBox fx:id="genderDropdown" prefHeight="26.0" prefWidth="116.0" promptText="Gender" />
+                              <ComboBox fx:id="petDropdown" prefHeight="26.0" prefWidth="100.0" promptText="Pet" />
+                              <Separator prefHeight="0.0" prefWidth="222.0" visible="false" />
+                              <ComboBox fx:id="datingDropdown" prefHeight="26.0" prefWidth="135.0" promptText="Dating NPC" />
+                              <ComboBox prefHeight="26.0" prefWidth="135.0" promptText="Month Date" />
+                              <Label alignment="TOP_LEFT" prefHeight="51.0" prefWidth="225.0" text="Set Event ID as seen, add Letter ID to mail tomorrow (Not used in game)" wrapText="true" />
+                              <TextField prefHeight="26.0" prefWidth="107.0" promptText="Event ID" />
+                              <TextField alignment="TOP_LEFT" prefHeight="26.0" prefWidth="112.0" promptText="Letter ID" />
+                           </children>
+                        </FlowPane>
+                     </left>
+                     <center>
+                        <FlowPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <ComboBox fx:id="npcFriendshipDropdown" prefHeight="26.0" prefWidth="91.0" promptText="Friend" />
+                              <ComboBox fx:id="npcHeartsDropdown" prefHeight="26.0" prefWidth="102.0" promptText="Hearts" />
+                              <Button fx:id="addNPCFriendship" mnemonicParsing="false" text="Add" />
+                              <Separator orientation="VERTICAL" prefHeight="29.0" prefWidth="0.0" visible="false" />
+                              <ComboBox fx:id="npcNotMarriedDropdown" prefHeight="26.0" prefWidth="128.0" promptText="Not Married" />
+                              <Button fx:id="addNPCNotMarried" mnemonicParsing="false" text="Add" />
+                              <Separator orientation="VERTICAL" prefHeight="27.0" prefWidth="1.0" visible="false" />
+                              <TextField fx:id="secretNoteEntry" prefHeight="26.0" prefWidth="104.0" promptText="Secret Note" />
+                              <Button fx:id="addSecretNote" mnemonicParsing="false" text="Add" />
+                              <Separator orientation="VERTICAL" prefHeight="27.0" prefWidth="0.0" visible="false" />
+                              <TextField fx:id="seenEventEntry" prefHeight="26.0" prefWidth="108.0" promptText="Seen Event ID" />
+                              <Button fx:id="addSeenEvent" mnemonicParsing="false" prefHeight="26.0" prefWidth="52.0" text="Add" />
+                              <Separator orientation="VERTICAL" prefHeight="22.0" prefWidth="5.0" visible="false" />
+                              <TextField fx:id="notSeenEventEntry" prefHeight="26.0" prefWidth="121.0" promptText="Not Seen Event" />
+                              <Button fx:id="addNotSeenEvent" mnemonicParsing="false" text="Add" />
+                              <Separator orientation="VERTICAL" prefHeight="35.0" prefWidth="1.0" visible="false" />
+                              <TextField fx:id="chosenDialogueEntry" prefHeight="26.0" prefWidth="130.0" promptText="Chosen Dialogue" />
+                              <Button fx:id="addChosenDialogue" mnemonicParsing="false" text="Add" />
+                              <TextField fx:id="seenLetterEntry" prefHeight="26.0" prefWidth="98.0" promptText="Seen Letter" />
+                              <Button fx:id="addSeenLetter" mnemonicParsing="false" text="Add" />
+                              <Separator orientation="VERTICAL" prefHeight="39.0" prefWidth="0.0" visible="false" />
+                              <TextField fx:id="notSeenLetterEntry" prefHeight="26.0" prefWidth="119.0" promptText="Not Seen Letter" />
+                              <Button fx:id="addNotSeenLetter" mnemonicParsing="false" text="Add" />
+                              <Separator orientation="VERTICAL" prefHeight="29.0" prefWidth="1.0" visible="false" />
+                              <ComboBox fx:id="npcInLocationDropdown" prefHeight="26.0" prefWidth="132.0" promptText="NPC Present" />
+                              <Button fx:id="addNPCInLocation" mnemonicParsing="false" text="Add" />
+                              <PrefixSelectionComboBox fx:id="carriedItemIDDropdown" prefHeight="26.0" prefWidth="138.0" promptText="Held Item" />
+                              <Button fx:id="addItemID" mnemonicParsing="false" text="Add" />
+                              <Separator orientation="VERTICAL" prefHeight="26.0" prefWidth="2.0" visible="false" />
+                              <PrefixSelectionComboBox fx:id="shippedItemIDDropdown" prefHeight="26.0" prefWidth="150.0" promptText="Shipped Item" />
+                              <TextField fx:id="shippedItemAmountEntry" prefHeight="26.0" prefWidth="74.0" promptText="Amount" />
+                              <Button fx:id="addShippedItem" mnemonicParsing="false" text="Add" />
+                              <Label fx:id="friendsLabel" alignment="TOP_LEFT" prefHeight="36.0" prefWidth="598.0" text="Friends:" wrapText="true" />
+                              <Label fx:id="npcNotMarriedLabel" alignment="TOP_LEFT" prefHeight="32.0" prefWidth="593.0" text="NPCs not married to Player:" wrapText="true" />
+                              <Label fx:id="secretNotesLabel" alignment="TOP_LEFT" prefHeight="33.0" prefWidth="598.0" text="Secret Notes:" wrapText="true" />
+                              <Label fx:id="seenEventsLabel" alignment="TOP_LEFT" prefHeight="35.0" prefWidth="599.0" text="Seen Events:" wrapText="true" />
+                              <Label fx:id="notSeenEventsLabel" alignment="TOP_LEFT" prefHeight="33.0" prefWidth="594.0" text="Not Seen Events:" wrapText="true" />
+                              <Label fx:id="chosenDialogueLabel" alignment="TOP_LEFT" prefHeight="29.0" prefWidth="596.0" text="Chosen Dialogue ID:" />
+                              <Label fx:id="seenLettersLabel" prefHeight="21.0" prefWidth="594.0" text="Seen Letters:" />
+                              <Label fx:id="notSeenLettersLabel" prefHeight="19.0" prefWidth="596.0" text="Not Seen Letters:" />
+                              <Label fx:id="npcsInLocationLabel" prefHeight="16.0" prefWidth="595.0" text="NPC In Location:" />
+                              <Label fx:id="itemIDLabel" alignment="TOP_LEFT" prefHeight="18.0" prefWidth="599.0" text="Held Items:" wrapText="true" />
+                              <Label fx:id="shippedItemsLabel" alignment="TOP_LEFT" prefHeight="19.0" prefWidth="596.0" text="Shipped Items:" wrapText="true" />
+                           </children>
+                        </FlowPane>
+                     </center></BorderPane>
             </content>
           </Tab>
             <Tab text="Host">
@@ -88,4 +169,7 @@
          </children>
       </AnchorPane>
    </bottom>
+   <top>
+      <Label text="Default Values Are NOT Entered in Prerequisite!" BorderPane.alignment="CENTER" />
+   </top>
 </BorderPane>

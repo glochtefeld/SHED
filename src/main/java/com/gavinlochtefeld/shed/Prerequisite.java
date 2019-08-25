@@ -134,11 +134,11 @@ public class Prerequisite {
         this.seenEvents = seenEvents;
     }
 
-    public HashMap<String, Integer> getFriendshipLevel() {
+    public HashMap<String, String> getFriendshipLevel() {
         return friendshipLevel;
     }
 
-    public void setFriendshipLevel(HashMap<String, Integer> friendshipLevel) {
+    public void setFriendshipLevel(HashMap<String, String> friendshipLevel) {
         this.friendshipLevel = friendshipLevel;
     }
 
@@ -329,7 +329,7 @@ public class Prerequisite {
     private int bottomMineCount = 0; // /b <number>
     private int freeInventorySlots = 0; // /c <number>
     private ArrayList<String> seenEvents = new ArrayList<>(); // /e <event id>
-    private HashMap<String, Integer> friendshipLevel = new HashMap<>(); // /f <name> <number>
+    private HashMap<String, String> friendshipLevel = new HashMap<>(); // /f <name> <number>
     private String gender = ""; // /g <gender> ("male" or "female")
     private String pet = ""; // /h <pet> ("cat" or "dog")
     private ArrayList<Integer> hasItemIDs = new ArrayList<>(); // /i <item ID>
@@ -342,7 +342,7 @@ public class Prerequisite {
     private ArrayList<String> npcInLocation = new ArrayList<>(); // /p <name>
     private ArrayList<String> chosenDialogueID = new ArrayList<>(); // /q <dialogue ID>
     private HashMap<String, Integer> shippedItem = new HashMap<>(); // /s <item ID> <number>
-    private int[] betweenTime = new int[]{0, 0}; // /t <min time> <max time>
+    private int[] betweenTime; // /t <min time> <max time>
     private ArrayList<Integer> date = new ArrayList<>(); // /u <day of month>
     private HashMap<String, String> seeEventLetterReturnFalse = new HashMap<>(); // /x <event ID> <letter ID>
 
@@ -386,8 +386,7 @@ public class Prerequisite {
             for (String event : this.seenEvents) finalString += "/e " + event;
         }
         if (this.friendshipLevel.size() > 0) {
-            finalString += "/f";
-            for (String name : this.friendshipLevel.keySet()) finalString += " " + name + this.friendshipLevel.get(name);
+            for (String name : this.friendshipLevel.keySet()) finalString += "/f " + name + this.friendshipLevel.get(name);
         }
         if (!this.gender.equals("")) finalString += "/g " + this.gender;
         if (!this.pet.equals("")) finalString += "/h " + this.pet;
@@ -419,7 +418,8 @@ public class Prerequisite {
             finalString += "/s";
             for (String item : this.shippedItem.keySet()) finalString += " " + item + this.shippedItem.get(item);
         }
-        if (this.betweenTime == new int[] {0,0}) finalString += "/t " + this.betweenTime[0] + " " + this.betweenTime[1];
+        if (this.betweenTime != null) finalString +=
+                "/t " + this.betweenTime[0] + " " + this.betweenTime[1];
         if (this.date.size() > 0) {
             for (int date : this.date) finalString += "/u " + date;
         }
