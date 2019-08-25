@@ -106,8 +106,8 @@ public class Prerequisite {
         return currentTilePosition;
     }
 
-    public void setCurrentTilePosition(int[] currentTilePosition) {
-        this.currentTilePosition = currentTilePosition;
+    public void setCurrentTilePosition(int x, int y) {
+        this.currentTilePosition = new int[] {x,y};
     }
 
     public int getBottomMineCount() {
@@ -230,11 +230,11 @@ public class Prerequisite {
         this.chosenDialogueID = chosenDialogueID;
     }
 
-    public HashMap<String, Integer> getShippedItem() {
+    public HashMap<Integer, Integer> getShippedItem() {
         return shippedItem;
     }
 
-    public void setShippedItem(HashMap<String, Integer> shippedItem) {
+    public void setShippedItem(HashMap<Integer, Integer> shippedItem) {
         this.shippedItem = shippedItem;
     }
 
@@ -341,7 +341,7 @@ public class Prerequisite {
     private ArrayList<String> notMarriedNPC = new ArrayList<>(); // /o <name>
     private ArrayList<String> npcInLocation = new ArrayList<>(); // /p <name>
     private ArrayList<String> chosenDialogueID = new ArrayList<>(); // /q <dialogue ID>
-    private HashMap<String, Integer> shippedItem = new HashMap<>(); // /s <item ID> <number>
+    private HashMap<Integer, Integer> shippedItem = new HashMap<>(); // /s <item ID> <number>
     private int[] betweenTime; // /t <min time> <max time>
     private ArrayList<Integer> date = new ArrayList<>(); // /u <day of month>
     private HashMap<String, String> seeEventLetterReturnFalse = new HashMap<>(); // /x <event ID> <letter ID>
@@ -416,7 +416,7 @@ public class Prerequisite {
         }
         if (this.shippedItem.size() > 0) {
             finalString += "/s";
-            for (String item : this.shippedItem.keySet()) finalString += " " + item + this.shippedItem.get(item);
+            for (Integer item : this.shippedItem.keySet()) finalString += " " + item + this.shippedItem.get(item);
         }
         if (this.betweenTime != null) finalString +=
                 "/t " + this.betweenTime[0] + " " + this.betweenTime[1];

@@ -93,10 +93,10 @@
                               <ComboBox fx:id="petDropdown" prefHeight="26.0" prefWidth="100.0" promptText="Pet" />
                               <Separator prefHeight="0.0" prefWidth="222.0" visible="false" />
                               <ComboBox fx:id="datingDropdown" prefHeight="26.0" prefWidth="135.0" promptText="Dating NPC" />
-                              <ComboBox prefHeight="26.0" prefWidth="135.0" promptText="Month Date" />
+                              <ComboBox fx:id="monthDate" prefHeight="26.0" prefWidth="135.0" promptText="Month Date" />
                               <Label alignment="TOP_LEFT" prefHeight="51.0" prefWidth="225.0" text="Set Event ID as seen, add Letter ID to mail tomorrow (Not used in game)" wrapText="true" />
-                              <TextField prefHeight="26.0" prefWidth="107.0" promptText="Event ID" />
-                              <TextField alignment="TOP_LEFT" prefHeight="26.0" prefWidth="112.0" promptText="Letter ID" />
+                              <TextField fx:id="eventFalseEventEntry" prefHeight="26.0" prefWidth="107.0" promptText="Event ID" />
+                              <TextField fx:id="eventFalseLetterEntry" alignment="TOP_LEFT" prefHeight="26.0" prefWidth="112.0" promptText="Letter ID" />
                            </children>
                         </FlowPane>
                      </left>
@@ -105,36 +105,36 @@
                            <children>
                               <ComboBox fx:id="npcFriendshipDropdown" prefHeight="26.0" prefWidth="91.0" promptText="Friend" />
                               <ComboBox fx:id="npcHeartsDropdown" prefHeight="26.0" prefWidth="102.0" promptText="Hearts" />
-                              <Button fx:id="addNPCFriendship" mnemonicParsing="false" text="Add" />
+                              <Button fx:id="addNPCFriendship" mnemonicParsing="false" onAction="#addFriendship" text="Add" />
                               <Separator orientation="VERTICAL" prefHeight="29.0" prefWidth="0.0" visible="false" />
                               <ComboBox fx:id="npcNotMarriedDropdown" prefHeight="26.0" prefWidth="128.0" promptText="Not Married" />
-                              <Button fx:id="addNPCNotMarried" mnemonicParsing="false" text="Add" />
+                              <Button fx:id="addNPCNotMarried" mnemonicParsing="false" onAction="#addNPCNotMarried" text="Add" />
                               <Separator orientation="VERTICAL" prefHeight="27.0" prefWidth="1.0" visible="false" />
                               <TextField fx:id="secretNoteEntry" prefHeight="26.0" prefWidth="104.0" promptText="Secret Note" />
-                              <Button fx:id="addSecretNote" mnemonicParsing="false" text="Add" />
+                              <Button fx:id="addSecretNote" mnemonicParsing="false" onAction="#addSecretNote" text="Add" />
                               <Separator orientation="VERTICAL" prefHeight="27.0" prefWidth="0.0" visible="false" />
                               <TextField fx:id="seenEventEntry" prefHeight="26.0" prefWidth="108.0" promptText="Seen Event ID" />
-                              <Button fx:id="addSeenEvent" mnemonicParsing="false" prefHeight="26.0" prefWidth="52.0" text="Add" />
+                              <Button fx:id="addSeenEvent" mnemonicParsing="false" onAction="#addSeenEvent" prefHeight="26.0" prefWidth="52.0" text="Add" />
                               <Separator orientation="VERTICAL" prefHeight="22.0" prefWidth="5.0" visible="false" />
                               <TextField fx:id="notSeenEventEntry" prefHeight="26.0" prefWidth="121.0" promptText="Not Seen Event" />
-                              <Button fx:id="addNotSeenEvent" mnemonicParsing="false" text="Add" />
+                              <Button fx:id="addNotSeenEvent" mnemonicParsing="false" onAction="#addNotSeenEvent" text="Add" />
                               <Separator orientation="VERTICAL" prefHeight="35.0" prefWidth="1.0" visible="false" />
                               <TextField fx:id="chosenDialogueEntry" prefHeight="26.0" prefWidth="130.0" promptText="Chosen Dialogue" />
-                              <Button fx:id="addChosenDialogue" mnemonicParsing="false" text="Add" />
+                              <Button fx:id="addChosenDialogue" mnemonicParsing="false" onAction="#addChosenDialogue" text="Add" />
                               <TextField fx:id="seenLetterEntry" prefHeight="26.0" prefWidth="98.0" promptText="Seen Letter" />
-                              <Button fx:id="addSeenLetter" mnemonicParsing="false" text="Add" />
+                              <Button fx:id="addSeenLetter" mnemonicParsing="false" onAction="#addSeenLetter" text="Add" />
                               <Separator orientation="VERTICAL" prefHeight="39.0" prefWidth="0.0" visible="false" />
                               <TextField fx:id="notSeenLetterEntry" prefHeight="26.0" prefWidth="119.0" promptText="Not Seen Letter" />
-                              <Button fx:id="addNotSeenLetter" mnemonicParsing="false" text="Add" />
+                              <Button fx:id="addNotSeenLetter" mnemonicParsing="false" onAction="#addNotSeenLetter" text="Add" />
                               <Separator orientation="VERTICAL" prefHeight="29.0" prefWidth="1.0" visible="false" />
                               <ComboBox fx:id="npcInLocationDropdown" prefHeight="26.0" prefWidth="132.0" promptText="NPC Present" />
-                              <Button fx:id="addNPCInLocation" mnemonicParsing="false" text="Add" />
+                              <Button fx:id="addNPCInLocation" mnemonicParsing="false" onAction="#addNPCInLocation" text="Add" />
                               <PrefixSelectionComboBox fx:id="carriedItemIDDropdown" prefHeight="26.0" prefWidth="138.0" promptText="Held Item" />
-                              <Button fx:id="addItemID" mnemonicParsing="false" text="Add" />
+                              <Button fx:id="addItemID" mnemonicParsing="false" onAction="#addHeldItemID" text="Add" />
                               <Separator orientation="VERTICAL" prefHeight="26.0" prefWidth="2.0" visible="false" />
                               <PrefixSelectionComboBox fx:id="shippedItemIDDropdown" prefHeight="26.0" prefWidth="150.0" promptText="Shipped Item" />
                               <TextField fx:id="shippedItemAmountEntry" prefHeight="26.0" prefWidth="74.0" promptText="Amount" />
-                              <Button fx:id="addShippedItem" mnemonicParsing="false" text="Add" />
+                              <Button fx:id="addShippedItem" mnemonicParsing="false" onAction="#addShippedItem" text="Add" />
                               <Label fx:id="friendsLabel" alignment="TOP_LEFT" prefHeight="36.0" prefWidth="598.0" text="Friends:" wrapText="true" />
                               <Label fx:id="npcNotMarriedLabel" alignment="TOP_LEFT" prefHeight="32.0" prefWidth="593.0" text="NPCs not married to Player:" wrapText="true" />
                               <Label fx:id="secretNotesLabel" alignment="TOP_LEFT" prefHeight="33.0" prefWidth="598.0" text="Secret Notes:" wrapText="true" />

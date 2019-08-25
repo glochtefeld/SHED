@@ -35,6 +35,14 @@ public class StardewData {
             "10",
             "11",
             "12");
+    private static final ObservableList<String> days = FXCollections.observableArrayList(
+            "1", "2", "3", "4",
+            "5", "6", "7", "8",
+            "9","10", "11", "12",
+            "13", "14", "15", "16",
+            "17", "18", "19", "20",
+            "21", "22", "23", "24",
+            "25", "26", "27", "28");
     private static final ObservableList<String> npcNames = FXCollections.observableArrayList(
             "Alex",
             "Elliot",
@@ -631,6 +639,10 @@ public class StardewData {
 
     public static ObservableList<String> getHearts() {
         return hearts;
+    }
+
+    public static ObservableList<String> getDates() {
+        return days;
     }
 
     public static HashMap<String, Integer> getItemIDMap() {

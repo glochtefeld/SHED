@@ -7,6 +7,7 @@ import javafx.scene.control.*;
 import javafx.scene.paint.Color;
 import org.controlsfx.control.PrefixSelectionComboBox;
 
+import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -52,7 +53,8 @@ public class PreReqController implements Initializable {
             npcFriendshipDropdown,
             npcHeartsDropdown,
             npcNotMarriedDropdown,
-            npcInLocationDropdown;
+            npcInLocationDropdown,
+            monthDate;
 
     @FXML
     private TextField money,
@@ -64,6 +66,8 @@ public class PreReqController implements Initializable {
             endTime,
             xPos,
             yPos,
+            eventFalseLetterEntry,
+            eventFalseEventEntry,
             secretNoteEntry,
             seenEventEntry,
             notSeenEventEntry,
@@ -106,7 +110,15 @@ public class PreReqController implements Initializable {
             shippedItemIDDropdown;
 
     private HashMap<String, String> friendship = new HashMap<>();
-    private HashMap<String, Integer> shippedItems = new HashMap<>();
+    private ArrayList<String> notMarriedNPCs = new ArrayList<>();
+    private ArrayList<Integer> secretNotes = new ArrayList<Integer>();
+    private ArrayList<String> seenEvents = new ArrayList<>();
+    private ArrayList<String> notSeenEvents = new ArrayList<>();
+    private ArrayList<String> chosenDialogue = new ArrayList<>();
+    private ArrayList<String> seenLetters = new ArrayList<>();
+    private ArrayList<String> notSeenLetters = new ArrayList<>();
+    private ArrayList<String> npcsInLocation = new ArrayList<>();
+    private HashMap<Integer, Integer> shippedItems = new HashMap<>();
     private ArrayList<Integer> heldItems = new ArrayList<>();
 
 
@@ -125,6 +137,7 @@ public class PreReqController implements Initializable {
         npcInLocationDropdown.setItems(StardewData.getNpcNames());
         carriedItemIDDropdown.setItems(StardewData.getItemNames());
         shippedItemIDDropdown.setItems(StardewData.getItemNames());
+        monthDate.setItems(StardewData.getDates());
     }
 
     @FXML
@@ -158,6 +171,125 @@ public class PreReqController implements Initializable {
     }
 
     @FXML
+    private void addFriendship(ActionEvent event) {
+        String npc = npcFriendshipDropdown.getValue();
+        if (npcHeartsDropdown.getValue() != null) {
+            String hearts = npcHeartsDropdown.getValue();
+            int friendshipVal = Integer.parseInt(hearts) * 250;
+            String friendshipStr = Integer.toString(friendshipVal);
+            friendship.put(npc, friendshipStr);
+            friendsLabel.setText(friendsLabel.getText() + npc + ":" + hearts + "hearts, ");
+        }
+        else
+            badIDLabel.setText("Set friendship level");
+    }
+
+    @FXML
+    private void addNPCNotMarried(ActionEvent event) {
+        String npc = npcNotMarriedDropdown.getValue();
+        if (npc != null) {
+            npcNotMarriedLabel.setText(npcNotMarriedLabel.getText() + npc + ", ");
+            notMarriedNPCs.add(npc);
+        }
+        else
+            badIDLabel.setText("Select not married NPC");
+    }
+
+    @FXML
+    private void addSecretNote(ActionEvent event) {
+        String note = secretNoteEntry.getText();
+        if (isInteger(note)) {
+            secretNotesLabel.setText(secretNotesLabel.getText() + note + ", ");
+            secretNotes.add(Integer.parseInt(note));
+        }
+        else
+            badIDLabel.setText("Secret Note must be an integer");
+    }
+
+    @FXML
+    private void addSeenEvent(ActionEvent event) {
+        String seenEvent = seenEventEntry.getText();
+        if (isInteger(seenEvent)) {
+            seenEventsLabel.setText(seenEventsLabel.getText() + seenEvent + ", ");
+            seenEvents.add(seenEvent);
+        }
+        else
+            badIDLabel.setText("Seen event ID must be an integer");
+    }
+
+    @FXML
+    private void addNotSeenEvent(ActionEvent event) {
+        String notSeenEvent = notSeenEventEntry.getText();
+        if (isInteger(notSeenEvent)) {
+            notSeenEventsLabel.setText(notSeenEventsLabel.getText() + notSeenEvent + ", ");
+            notSeenEvents.add(notSeenEvent);
+        }
+        else badIDLabel.setText("Not Seen event ID must be an integer");
+    }
+
+    @FXML
+    private void addChosenDialogue(ActionEvent event) {
+        String chosenDialogueStr = chosenDialogueEntry.getText();
+        if (chosenDialogueStr != null) {
+            chosenDialogue.add(chosenDialogueStr);
+            chosenDialogueLabel.setText(chosenDialogueLabel.getText() + chosenDialogueStr + ", ");
+        }
+        else badIDLabel.setText("Chosen Dialogue field can't be empty");
+    }
+
+    @FXML
+    private void addSeenLetter(ActionEvent event) {
+        String seenLetter = seenLetterEntry.getText();
+        if (isInteger(seenLetter)) {
+            seenLettersLabel.setText(seenLettersLabel.getText() + seenLetter + ", ");
+            seenLetters.add(seenLetter);
+        }
+        else badIDLabel.setText("Seen letter ID must be an integer");
+    }
+
+    @FXML
+    private void addNotSeenLetter(ActionEvent event) {
+        String notSeenLetter = notSeenLetterEntry.getText();
+        if (isInteger(notSeenLetter)) {
+            notSeenLettersLabel.setText(notSeenLettersLabel.getText() + notSeenLetter + ", ");
+            notSeenLetters.add(notSeenLetter);
+        }
+        else badIDLabel.setText("Not Seen letter ID must be an integer");
+    }
+
+    @FXML
+    private void addNPCInLocation(ActionEvent event) {
+        String npc = npcInLocationDropdown.getValue();
+        if (npc != null) {
+            npcsInLocationLabel.setText(npcsInLocationLabel.getText() + npc + ", ");
+            npcsInLocation.add(npc);
+        }
+        else badIDLabel.setText("Can't add null NPC");
+    }
+
+    @FXML
+    private void addHeldItemID(ActionEvent event) {
+        String item = carriedItemIDDropdown.getValue();
+        if (item != null) {
+            heldItems.add(StardewData.getItemIDMap().get(item));
+            itemIDLabel.setText(itemIDLabel.getText() + item + ", ");
+        }
+        else badIDLabel.setText("Held item is null");
+    }
+
+    @FXML
+    private void addShippedItem(ActionEvent event) {
+        String item = shippedItemIDDropdown.getValue();
+        String number = shippedItemAmountEntry.getText();
+        if (isInteger(number) && item != null) {
+            shippedItemsLabel.setText(shippedItemsLabel.getText() + item + ": " + number + ", ");
+            shippedItems.put(StardewData.getItemIDMap().get(item),Integer.parseInt(number));
+        }
+        else badIDLabel.setText("Shipped Item is null or not a number");
+    }
+
+
+    @FXML
     private void saveToPrerequisite(ActionEvent event) {
         if (checkIDHelper()) {
             this.prereq = new Prerequisite();
@@ -187,25 +319,62 @@ public class PreReqController implements Initializable {
             if (petDropdown.getValue() != null)
                 this.prereq.setPet(petDropdown.getValue());
             if (isInteger(money.getText()))
-                this.prereq.setMoney(Integer.parseInt(money.getText()));
+                this.prereq.setEarnedMoney(Integer.parseInt(money.getText()));
+            if (isInteger(currentMoney.getText()))
+                this.prereq.setMoney(Integer.parseInt(currentMoney.getText()));
             if (isInteger(bottomMine.getText()))
                 this.prereq.setBottomMineCount(Integer.parseInt(bottomMine.getText()));
             if (isInteger(freeInventorySlots.getText()))
                 this.prereq.setFreeInventorySlots(Integer.parseInt(freeInventorySlots.getText()));
             if (isInteger(playedDays.getText()))
                 this.prereq.setPlayedDays(Integer.parseInt(playedDays.getText()));
-            if ( isInteger(startTime.getText()) && isInteger(endTime.getText()) )
-                this.prereq.setBetweenTime(new int[] {
-                        Integer.parseInt(startTime.getText()),
-                        Integer.parseInt(endTime.getText())
-                    }
-                );
-            if ( isInteger(xPos.getText()) && isInteger(yPos.getText()) )
-                this.prereq.setBetweenTime(new int[] {
-                                Integer.parseInt(xPos.getText()),
-                                Integer.parseInt(yPos.getText())
+            if ( isInteger(startTime.getText()) && isInteger(endTime.getText()) ) {
+                this.prereq.setBetweenTime(new int[]{
+                                Integer.parseInt(startTime.getText()),
+                                Integer.parseInt(endTime.getText())
                         }
                 );
+            }
+            if (datingDropdown.getValue() != null)
+                this.prereq.setDatingName(datingDropdown.getValue());
+            if (isInteger(xPos.getText()) && isInteger(yPos.getText()))
+                this.prereq.setCurrentTilePosition(Integer.parseInt(xPos.getText()), Integer.parseInt(yPos.getText()));
+            if (monthDate.getValue() != null) {
+             // Apparently you can have more than one date specified
+             // for a heart Event, but the only place it's used is
+             // the beginning of the game. If there's demand,
+             //change this.
+                ArrayList<Integer> tempArray = new ArrayList<>();
+                int date = Integer.parseInt(monthDate.getValue());
+                tempArray.add(date);
+                this.prereq.setDate(tempArray);
+            }
+            if (eventFalseEventEntry.getText() != null && eventFalseLetterEntry.getText() != null) {
+                HashMap<String,String> tempMap = new HashMap<>();
+                tempMap.put(eventFalseEventEntry.getText(),eventFalseLetterEntry.getText());
+                this.prereq.setSeeEventLetterReturnFalse(tempMap);
+            }
+            if (friendship.size() > 0)
+                this.prereq.setFriendshipLevel(friendship);
+            if (notMarriedNPCs.size() > 0)
+                this.prereq.setNotMarriedNPC(notMarriedNPCs);
+            if (secretNotes.size() > 0)
+                this.prereq.setSecretNotes(secretNotes);
+            if (seenEvents.size() > 0)
+                this.prereq.setSeenEvents(seenEvents);
+            if (notSeenEvents.size() > 0)
+                this.prereq.setNotSeenEvents(notSeenEvents);
+            if (chosenDialogue.size() > 0)
+                this.prereq.setChosenDialogueID(chosenDialogue);
+            if (seenLetters.size() > 0)
+                this.prereq.setSeenLetters(seenLetters);
+            if (npcsInLocation.size() > 0)
+                this.prereq.setNpcInLocation(npcsInLocation);
+            if (heldItems.size() > 0)
+                this.prereq.setHasItemIDs(heldItems);
+            if (shippedItems.size() > 0)
+                this.prereq.setShippedItem(shippedItems);
+
 
             dialogueReqOutLabel.setText(this.prereq.exportToString());
 
