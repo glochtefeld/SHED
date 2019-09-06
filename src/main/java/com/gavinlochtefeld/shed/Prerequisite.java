@@ -1,7 +1,10 @@
 package com.gavinlochtefeld.shed;
 
 import com.google.gson.Gson;
+import javafx.stage.FileChooser;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -354,9 +357,8 @@ public class Prerequisite {
     private ArrayList<String> hostAndPlayerNoLetter = new ArrayList<>(); // /*l <letter ID>
     private ArrayList<String> hostAndPlayerLetter = new ArrayList<>(); // /*n <letter ID>
 
-    public String savePrerequisites() {
+    public void savePrerequisites() {
         Gson gson = new Gson();
-        return gson.toJson(this);
     }
 
     @Override
@@ -386,7 +388,7 @@ public class Prerequisite {
             for (String event : this.seenEvents) finalString += "/e " + event;
         }
         if (this.friendshipLevel.size() > 0) {
-            for (String name : this.friendshipLevel.keySet()) finalString += "/f " + name + this.friendshipLevel.get(name);
+            for (String name : this.friendshipLevel.keySet()) finalString += "/f " + name + " " + this.friendshipLevel.get(name);
         }
         if (!this.gender.equals("")) finalString += "/g " + this.gender;
         if (!this.pet.equals("")) finalString += "/h " + this.pet;
@@ -406,10 +408,10 @@ public class Prerequisite {
             for (String letter : this.seenLetters) finalString += " " + letter;
         }
         if (this.notMarriedNPC.size() > 0) {
-            for (String npc : this.notMarriedNPC) finalString += "/o " + this.notMarriedNPC;
+            for (String npc : this.notMarriedNPC) finalString += "/o " + npc;
         }
         if (this.npcInLocation.size() > 0) {
-            for(String name : this.npcInLocation) finalString += "/p " + this.npcInLocation;
+            for(String name : this.npcInLocation) finalString += "/p " + name;
         }
         if (this.chosenDialogueID.size() > 0) {
             for (String events : this.notSeenEvents) finalString += "/q " + events;

@@ -153,7 +153,23 @@
           </Tab>
             <Tab text="Host">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="hostLetterButton" layoutX="127.0" layoutY="70.0" mnemonicParsing="false" onAction="#addHostLetter" text="Add" />
+                        <Button fx:id="hostNoLetterButton" layoutX="127.0" layoutY="112.0" mnemonicParsing="false" onAction="#addHostNotLetter" text="Add" />
+                        <Button fx:id="hostAndPlayerLetterButton" layoutX="127.0" layoutY="151.0" mnemonicParsing="false" onAction="#addHostAndPlayerLetter" text="Add" />
+                        <Button fx:id="hostAndPlayerNoLetterButton" layoutX="127.0" layoutY="192.0" mnemonicParsing="false" onAction="#addHostAndPlayerNoLetter" text="Add" />
+                        <CheckBox fx:id="finishedCCCheckbox" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="Finished Community Center" />
+                        <CheckBox fx:id="isHostPlayerCheckbox" layoutX="14.0" layoutY="38.0" mnemonicParsing="false" text="Current Player is Host Player" />
+                        <TextField fx:id="hostLetterEntry" layoutX="14.0" layoutY="70.0" prefHeight="26.0" prefWidth="107.0" promptText="Host Letter ID" />
+                        <TextField fx:id="hostNoLetterEntry" layoutX="14.0" layoutY="111.0" prefHeight="26.0" prefWidth="107.0" promptText="Host Letter ID" />
+                        <TextField fx:id="hostAndPlayerLetterEntry" layoutX="14.0" layoutY="150.0" prefHeight="26.0" prefWidth="107.0" promptText="Letter ID" />
+                        <TextField fx:id="hostAndPlayerNoLetterEntry" layoutX="14.0" layoutY="192.0" prefHeight="26.0" prefWidth="107.0" promptText="Letter ID" />
+                        <Label fx:id="hostLetterLabel" layoutX="188.0" layoutY="71.0" prefHeight="25.0" prefWidth="626.0" text="Letters: " />
+                        <Label fx:id="hostNoLetterLabel" layoutX="188.0" layoutY="112.0" prefHeight="25.0" prefWidth="626.0" text="Unseen Letters: " />
+                        <Label fx:id="hostAndPlayerLetterLabel" layoutX="188.0" layoutY="152.0" prefHeight="25.0" prefWidth="625.0" text="Host and player letters: " />
+                        <Label fx:id="hostAndPlayerNoLetterLabel" layoutX="188.0" layoutY="193.0" prefHeight="25.0" prefWidth="622.0" text="Host and player unseen letters: " />
+                     </children></AnchorPane>
               </content>
             </Tab>
         </tabs>

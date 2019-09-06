@@ -4,8 +4,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
 import javafx.scene.paint.Color;
 import org.controlsfx.control.PrefixSelectionComboBox;
+import org.controlsfx.control.action.Action;
 
 import java.lang.reflect.Array;
 import java.net.URL;
@@ -17,6 +20,8 @@ import java.util.ResourceBundle;
 public class PreReqController implements Initializable {
     // Potentially passed in
     private Prerequisite prereq;
+    final Clipboard clipboard = Clipboard.getSystemClipboard();
+    final ClipboardContent content = new ClipboardContent();
 
     // Context Menu FXML Attributes
     @FXML
@@ -109,6 +114,31 @@ public class PreReqController implements Initializable {
     private PrefixSelectionComboBox<String> carriedItemIDDropdown,
             shippedItemIDDropdown;
 
+    // Host menu FXML attributes
+    @FXML
+    private CheckBox finishedCCCheckbox,
+        isHostPlayerCheckbox;
+    @FXML
+    private Button hostLetterButton,
+        hostNoLetterButton,
+        hostAndPlayerLetterButton,
+        hostAndPlayerNoLetterButton;
+
+    @FXML
+    private TextField hostLetterEntry,
+        hostNoLetterEntry,
+        hostAndPlayerLetterEntry,
+        hostAndPlayerNoLetterEntry;
+
+    @FXML
+    private Label hostLetterLabel,
+        hostNoLetterLabel,
+        hostAndPlayerLetterLabel,
+        hostAndPlayerNoLetterLabel;
+
+    // Context structures
+    private ArrayList<String> inProgressDialogue = new ArrayList<>();
+    // Current player structures
     private HashMap<String, String> friendship = new HashMap<>();
     private ArrayList<String> notMarriedNPCs = new ArrayList<>();
     private ArrayList<Integer> secretNotes = new ArrayList<Integer>();
@@ -120,6 +150,12 @@ public class PreReqController implements Initializable {
     private ArrayList<String> npcsInLocation = new ArrayList<>();
     private HashMap<Integer, Integer> shippedItems = new HashMap<>();
     private ArrayList<Integer> heldItems = new ArrayList<>();
+    // Host structures
+    private ArrayList<String> hostSeenLetters = new ArrayList<>();
+    private ArrayList<String> hostNotSeenLetters = new ArrayList<>();
+    private ArrayList<String> hostAndPlayerLetters = new ArrayList<>();
+    private ArrayList<String> hostAndPlayerNotLetters = new ArrayList<>();
+
 
 
     @Override
@@ -143,12 +179,18 @@ public class PreReqController implements Initializable {
     @FXML
     private void addDialoguePrereq(ActionEvent event) {
         String dialogIn = dialogueReqInput.getText();
-        if (dialogueReqOutLabel.getText() == "") {
-            dialogueReqOutLabel.setText(dialogIn);
+        if (dialogIn != "") {
+            inProgressDialogue.add(dialogIn);
+            if (dialogueReqOutLabel.getText() == "") {
+                dialogueReqOutLabel.setText(dialogIn);
+            }
+            else {
+                dialogueReqOutLabel.setText(dialogueReqOutLabel.getText() + ", " + dialogIn);
+            }
         }
-        else {
-            dialogueReqOutLabel.setText(dialogueReqOutLabel.getText() + ", " + dialogIn);
-        }
+        else
+            badIDLabel.setText("Bad In Progress Dialogue ID");
+
         dialogueReqInput.setText("");
     }
 
@@ -288,6 +330,50 @@ public class PreReqController implements Initializable {
         else badIDLabel.setText("Shipped Item is null or not a number");
     }
 
+    @FXML
+    private void addHostLetter(ActionEvent event){
+        String letterID = hostLetterEntry.getText();
+        if (isInteger(letterID)) {
+            hostLetterLabel.setText(hostLetterLabel.getText() + letterID + ", ");
+            hostSeenLetters.add(letterID);
+        }
+        else
+            badIDLabel.setText("Host seen letter ID must be a number");
+    }
+
+    @FXML
+    private void addHostNotLetter(ActionEvent event){
+        String letterID = hostNoLetterEntry.getText();
+        if (isInteger(letterID)) {
+            hostNoLetterLabel.setText(hostNoLetterLabel.getText() + letterID + ", ");
+            hostNotSeenLetters.add(letterID);
+        }
+        else
+            badIDLabel.setText("Host not seen letter ID must be a number");
+    }
+
+    @FXML
+    private void addHostAndPlayerLetter(ActionEvent event){
+        String eventID = hostAndPlayerLetterEntry.getText();
+        if (isInteger(eventID)) {
+            hostAndPlayerLetterLabel.setText(hostAndPlayerLetterLabel.getText() + eventID + ", ");
+            hostAndPlayerLetters.add(eventID);
+        }
+        else
+            badIDLabel.setText("Host seen event ID must be a number");
+    }
+
+    @FXML
+    private void addHostAndPlayerNoLetter(ActionEvent event){
+        String eventID = hostAndPlayerNoLetterEntry.getText();
+        if (isInteger(eventID)) {
+            hostAndPlayerNoLetterLabel.setText(hostAndPlayerNoLetterLabel.getText() + eventID + ", ");
+            hostAndPlayerNotLetters.add(eventID);
+        }
+        else
+            badIDLabel.setText("Host and player not seen letter ID must be a number");
+    }
+
 
     @FXML
     private void saveToPrerequisite(ActionEvent event) {
@@ -295,12 +381,8 @@ public class PreReqController implements Initializable {
             this.prereq = new Prerequisite();
             // context prerequisites
             this.prereq.setId(Integer.parseInt(idBox.getText()));
-            // Get ID list from label and turn into ArrayList
-            if (!dialogueReqOutLabel.getText().equals("")) {
-                String[] tempIdArray = dialogueReqOutLabel.getText().split("\\s+,\\s+");
-                ArrayList<String> tempIdArrayList = new ArrayList<>(Arrays.asList(tempIdArray));
-                this.prereq.setIdNotInProgress(tempIdArrayList);
-            }
+            if (inProgressDialogue.size() > 0)
+                this.prereq.setIdNotInProgress(inProgressDialogue);
             this.prereq.setFestivalDay(festivalCheck.isSelected());
             // Set Weekdays
             this.prereq.setWeekdays(getWeekdayValue());
@@ -374,9 +456,26 @@ public class PreReqController implements Initializable {
                 this.prereq.setHasItemIDs(heldItems);
             if (shippedItems.size() > 0)
                 this.prereq.setShippedItem(shippedItems);
+            // Host prerequisites
+            if (finishedCCCheckbox.isSelected())
+                this.prereq.setFinishedCC(true);
+            if (isHostPlayerCheckbox.isSelected())
+                this.prereq.setHostPlayer(true);
+            if (hostSeenLetters.size() > 0)
+                this.prereq.setHostLetter(hostSeenLetters);
+            if (hostNotSeenLetters.size() > 0)
+                this.prereq.setHostNoLetter(hostNotSeenLetters);
+            if (hostAndPlayerLetters.size() > 0)
+                this.prereq.setHostAndPlayerLetter(hostAndPlayerLetters);
+            if (hostAndPlayerNotLetters.size() > 0)
+                this.prereq.setHostAndPlayerNoLetter(hostAndPlayerNotLetters);
 
 
-            dialogueReqOutLabel.setText(this.prereq.exportToString());
+
+            //dialogueReqOutLabel.setText(this.prereq.exportToString());
+            content.putString(this.prereq.exportToString());
+            clipboard.setContent(content);
+            this.prereq.savePrerequisites();
 
         }
         else {

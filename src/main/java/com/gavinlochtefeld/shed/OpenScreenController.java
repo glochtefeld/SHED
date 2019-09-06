@@ -61,6 +61,13 @@ public class OpenScreenController {
     private void openFile(File file) {
     }
 
+    @FXML
+    private void saveProject (ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save as...");
+
+    }
+
 
 
     public void initialize(URL url, ResourceBundle rb) {
